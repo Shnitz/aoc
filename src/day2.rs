@@ -1,0 +1,47 @@
+use aoc::*;
+
+pub fn day2(data: &String, prob: ProblemPart) -> String {
+    let cnt: i32 = 0;
+    data.lines()
+        .fold(cnt, |acc, l| {
+            let mut nums: Vec<_> = l.split_whitespace().map(|i| i.parse::<i32>().unwrap()).collect();
+            match prob {
+                ProblemPart::A => acc + nums.iter().max().unwrap() - nums.iter().min().unwrap(),
+                ProblemPart::B => {
+                    let mut tot = 0;
+                    nums.sort();
+                    for idx in 0..nums.len() {
+                        for test in (idx + 1)..nums.len() {
+                            if nums[test] % nums[idx] == 0 {
+                                tot += nums[test] / nums[idx];
+                            }
+                        }
+                    }
+                    acc + tot
+                }
+            }
+        })
+        .to_string()
+}
+
+#[cfg(test)]
+mod test {
+    use super::*;
+
+    #[test]
+    fn test1() {
+        assert_eq!("18", day2(&String::from(
+"5 1 9 5
+7 5 3
+2 4 6 8"), ProblemPart::A));
+    }
+
+    #[test]
+    fn test2() {
+        assert_eq!("9", day2(&String::from(
+"5 9 2 8
+    9 4 7 3
+    3 8 6 5"), ProblemPart::B));
+    }
+
+}
