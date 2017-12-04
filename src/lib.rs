@@ -3,11 +3,6 @@ use std::io::prelude::*;
 
 pub enum ProblemPart { A, B }
 
-pub trait ChristmasDay {
-    fn solve(data: &String, prob: ProblemPart) -> String;
-    fn day() -> u32;
-}
-
 pub fn input(filenum: &String) -> String {
     let mut filename = String::from("./input/input");
     filename.push_str(filenum);

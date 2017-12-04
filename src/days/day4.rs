@@ -1,11 +1,16 @@
 use aoc::ProblemPart;
+use days::ChristmasDay;
 
-pub fn day4(data: &String, prob: ProblemPart) -> String {
-    data.lines()
-        .filter(|l| is_valid(*l, &prob))
-        .collect::<Vec<_>>()
-        .len()
-        .to_string()
+pub struct Day4;
+
+impl ChristmasDay for Day4 {
+    fn solve(&self, data: &String, prob: ProblemPart) -> String {
+        data.lines()
+            .filter(|l| is_valid(*l, &prob))
+            .collect::<Vec<_>>()
+            .len()
+            .to_string()
+    }
 }
 
 fn is_valid<S>(line: S, _prob: &ProblemPart) -> bool where S: Into<String> {
