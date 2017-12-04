@@ -24,40 +24,13 @@ mod test {
     #[test]
     fn test1() {
         assert_eq!("3", day1(&String::from("1122"), ProblemPart::A));
-    }
-
-    #[test]
-    fn test2() {
         assert_eq!("4", day1(&String::from("1111"), ProblemPart::A));
-    }
-
-    #[test]
-    fn test3() {
         assert_eq!("0", day1(&String::from("1234"), ProblemPart::A));
-    }
-    #[test]
-    fn test4() {
         assert_eq!("9", day1(&String::from("91212129"), ProblemPart::A));
-    }
-
-    #[test]
-    fn test1b() {
         assert_eq!("6", day1(&String::from("1212"), ProblemPart::B));
-    }
-    #[test]
-    fn test2b() {
         assert_eq!("0", day1(&String::from("1221"), ProblemPart::B));
-    }
-    #[test]
-    fn test3b() {
         assert_eq!("4", day1(&String::from("123425"), ProblemPart::B));
-    }
-    #[test]
-    fn test4b() {
         assert_eq!("12", day1(&String::from("123123"), ProblemPart::B));
-    }
-    #[test]
-    fn test5b() {
         assert_eq!("4", day1(&String::from("12131415"), ProblemPart::B));
     }
 }

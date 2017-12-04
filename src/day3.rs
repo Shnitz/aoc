@@ -72,56 +72,20 @@ mod test {
     #[test]
     fn test1() {
         assert_eq!("0", day3(&String::from("1"), ProblemPart::A));
-    }
-
-    #[test]
-    fn test2() {
         assert_eq!("3", day3(&String::from("12"), ProblemPart::A));
-    }
-
-    #[test]
-    fn test3() {
         assert_eq!("2", day3(&String::from("23"), ProblemPart::A));
-    }
-
-    #[test]
-    fn test4() {
         assert_eq!("31", day3(&String::from("1024"), ProblemPart::A));
-    }
-
-    #[test]
-    fn test5() {
         assert_eq!("475", day3(&String::from("277678"), ProblemPart::A));
-    }
-
-    #[test]
-    fn test6() {
         assert_eq!("1", day3(&String::from("2"), ProblemPart::A));
-    }
-
-    #[test]
-    fn test7() {
         assert_eq!("3", day3(&String::from("16"), ProblemPart::A));
     }
 
     #[test]
     fn test8() {
         assert_eq!("2", day3(&String::from("1"), ProblemPart::B));
-    }
-    #[test]
-    fn test9() {
         assert_eq!("4", day3(&String::from("2"), ProblemPart::B));
-    }
-    #[test]
-    fn test10() {
         assert_eq!("10", day3(&String::from("5"), ProblemPart::B));
-    }
-    #[test]
-    fn test11() {
         assert_eq!("23", day3(&String::from("22"), ProblemPart::B));
-    }
-    #[test]
-    fn test12() {
         assert_eq!("806", day3(&String::from("750"), ProblemPart::B));
     }
 }
