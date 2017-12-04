@@ -37,7 +37,7 @@ mod test {
     use super::*;
 
     #[test]
-    fn test1() {
+    fn day4_test1() {
         assert_eq!(true, is_valid("aa bb cc dd ee", &ProblemPart::A));
         assert_eq!(false, is_valid("aa bb cc dd aa", &ProblemPart::A));
         assert_eq!(true, is_valid("aa bb cc dd aaa", &ProblemPart::A));

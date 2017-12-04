@@ -34,7 +34,7 @@ mod test {
     use super::*;
 
     #[test]
-    fn test1() {
+    fn day2_test1() {
         assert_eq!("18", Day2.solve(&String::from(
 "5 1 9 5
 7 5 3
@@ -42,7 +42,7 @@ mod test {
     }
 
     #[test]
-    fn test2() {
+    fn day2_test2() {
         assert_eq!("9", Day2.solve(&String::from(
 "5 9 2 8
     9 4 7 3

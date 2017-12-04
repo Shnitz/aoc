@@ -27,7 +27,7 @@ mod test {
     use super::*;
 
     #[test]
-    fn test1() {
+    fn day1_test1() {
         assert_eq!("3", Day1.solve(&String::from("1122"), ProblemPart::A));
         assert_eq!("4", Day1.solve(&String::from("1111"), ProblemPart::A));
         assert_eq!("0", Day1.solve(&String::from("1234"), ProblemPart::A));

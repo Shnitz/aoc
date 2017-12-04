@@ -73,7 +73,7 @@ mod test {
     use super::*;
 
     #[test]
-    fn test1() {
+    fn day3_test1() {
         assert_eq!("0", Day3.solve(&String::from("1"), ProblemPart::A));
         assert_eq!("3", Day3.solve(&String::from("12"), ProblemPart::A));
         assert_eq!("2", Day3.solve(&String::from("23"), ProblemPart::A));
@@ -84,7 +84,7 @@ mod test {
     }
 
     #[test]
-    fn test8() {
+    fn day3_test2() {
         assert_eq!("2", Day3.solve(&String::from("1"), ProblemPart::B));
         assert_eq!("4", Day3.solve(&String::from("2"), ProblemPart::B));
         assert_eq!("10", Day3.solve(&String::from("5"), ProblemPart::B));
