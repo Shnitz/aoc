@@ -6,7 +6,12 @@ pub mod day4;
 use aoc::ProblemPart;
 
 pub trait ChristmasDay {
-    fn solve(&self, data: &str, prob: ProblemPart) -> String;
+    fn solve(&self, data: &str, prob: ProblemPart) -> String {
+        match prob {
+            ProblemPart::A => self.solve_a(data),
+            ProblemPart::B => self.solve_b(data),
+        }
+    }
     fn solve_a(&self, data: &str) -> String {
         self.solve(data, ProblemPart::A)
     }
