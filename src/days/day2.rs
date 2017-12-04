@@ -4,7 +4,7 @@ use days::ChristmasDay;
 pub struct Day2;
 
 impl ChristmasDay for Day2 {
-    fn solve(&self, data: &String, prob: ProblemPart) -> String {
+    fn solve(&self, data: &str, prob: ProblemPart) -> String {
         data.lines()
             .fold(0, |acc, l| {
                 let mut nums: Vec<_> = l.split_whitespace().map(|i| i.parse::<i32>().unwrap()).collect();
@@ -35,18 +35,18 @@ mod test {
 
     #[test]
     fn day2_test1() {
-        assert_eq!("18", Day2.solve(&String::from(
+        assert_eq!("18", Day2.solve_a(
 "5 1 9 5
 7 5 3
-2 4 6 8"), ProblemPart::A));
+2 4 6 8"));
     }
 
     #[test]
     fn day2_test2() {
-        assert_eq!("9", Day2.solve(&String::from(
+        assert_eq!("9", Day2.solve_b(
 "5 9 2 8
     9 4 7 3
-    3 8 6 5"), ProblemPart::B));
+    3 8 6 5"));
     }
 
 }

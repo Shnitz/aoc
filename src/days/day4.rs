@@ -4,7 +4,7 @@ use days::ChristmasDay;
 pub struct Day4;
 
 impl ChristmasDay for Day4 {
-    fn solve(&self, data: &String, prob: ProblemPart) -> String {
+    fn solve(&self, data: &str, prob: ProblemPart) -> String {
         data.lines()
             .filter(|l| is_valid(*l, &prob))
             .collect::<Vec<_>>()

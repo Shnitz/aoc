@@ -4,7 +4,7 @@ use days::ChristmasDay;
 pub struct Day3;
 
 impl ChristmasDay for Day3 {
-    fn solve(&self, data: &String, prob: ProblemPart) -> String {
+    fn solve(&self, data: &str, prob: ProblemPart) -> String {
         let num = data.parse::<i32>().unwrap();
         match prob {
             ProblemPart::A => {
@@ -74,21 +74,21 @@ mod test {
 
     #[test]
     fn day3_test1() {
-        assert_eq!("0", Day3.solve(&String::from("1"), ProblemPart::A));
-        assert_eq!("3", Day3.solve(&String::from("12"), ProblemPart::A));
-        assert_eq!("2", Day3.solve(&String::from("23"), ProblemPart::A));
-        assert_eq!("31", Day3.solve(&String::from("1024"), ProblemPart::A));
-        assert_eq!("475", Day3.solve(&String::from("277678"), ProblemPart::A));
-        assert_eq!("1", Day3.solve(&String::from("2"), ProblemPart::A));
-        assert_eq!("3", Day3.solve(&String::from("16"), ProblemPart::A));
+        assert_eq!("0", Day3.solve_a("1"));
+        assert_eq!("3", Day3.solve_a("12"));
+        assert_eq!("2", Day3.solve_a("23"));
+        assert_eq!("31", Day3.solve_a("1024"));
+        assert_eq!("475", Day3.solve_a("277678"));
+        assert_eq!("1", Day3.solve_a("2"));
+        assert_eq!("3", Day3.solve_a("16"));
     }
 
     #[test]
     fn day3_test2() {
-        assert_eq!("2", Day3.solve(&String::from("1"), ProblemPart::B));
-        assert_eq!("4", Day3.solve(&String::from("2"), ProblemPart::B));
-        assert_eq!("10", Day3.solve(&String::from("5"), ProblemPart::B));
-        assert_eq!("23", Day3.solve(&String::from("22"), ProblemPart::B));
-        assert_eq!("806", Day3.solve(&String::from("750"), ProblemPart::B));
+        assert_eq!("2", Day3.solve_b("1"));
+        assert_eq!("4", Day3.solve_b("2"));
+        assert_eq!("10", Day3.solve_b("5"));
+        assert_eq!("23", Day3.solve_b("22"));
+        assert_eq!("806", Day3.solve_b("750"));
     }
 }

@@ -4,7 +4,7 @@ use days::ChristmasDay;
 pub struct Day1;
 
 impl ChristmasDay for Day1 {
-    fn solve(&self, data: &String, prob: ProblemPart) -> String {
+    fn solve(&self, data: &str, prob: ProblemPart) -> String {
         let chars: Vec<_> = data.chars().collect();
         let mut total = 0;
         let size = chars.len();
@@ -28,14 +28,14 @@ mod test {
 
     #[test]
     fn day1_test1() {
-        assert_eq!("3", Day1.solve(&String::from("1122"), ProblemPart::A));
-        assert_eq!("4", Day1.solve(&String::from("1111"), ProblemPart::A));
-        assert_eq!("0", Day1.solve(&String::from("1234"), ProblemPart::A));
-        assert_eq!("9", Day1.solve(&String::from("91212129"), ProblemPart::A));
-        assert_eq!("6", Day1.solve(&String::from("1212"), ProblemPart::B));
-        assert_eq!("0", Day1.solve(&String::from("1221"), ProblemPart::B));
-        assert_eq!("4", Day1.solve(&String::from("123425"), ProblemPart::B));
-        assert_eq!("12", Day1.solve(&String::from("123123"), ProblemPart::B));
-        assert_eq!("4", Day1.solve(&String::from("12131415"), ProblemPart::B));
+        assert_eq!("3", Day1.solve_a("1122"));
+        assert_eq!("4", Day1.solve_a("1111"));
+        assert_eq!("0", Day1.solve_a("1234"));
+        assert_eq!("9", Day1.solve_a("91212129"));
+        assert_eq!("6", Day1.solve_b("1212"));
+        assert_eq!("0", Day1.solve_b("1221"));
+        assert_eq!("4", Day1.solve_b("123425"));
+        assert_eq!("12", Day1.solve_b("123123"));
+        assert_eq!("4", Day1.solve_b("12131415"));
     }
 }
