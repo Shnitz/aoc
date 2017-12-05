@@ -2,6 +2,7 @@ pub mod day1;
 pub mod day2;
 pub mod day3;
 pub mod day4;
+pub mod day5;
 
 use aoc::ProblemPart;
 
@@ -31,6 +32,7 @@ pub fn run(day: i8, data: String) -> (String, String){
         2 => Some(Box::new(day2::Day2)),
         3 => Some(Box::new(day3::Day3)),
         4 => Some(Box::new(day4::Day4)),
+        5 => Some(Box::new(day5::Day5)),
         _ => None,
     };
     match fnct {
