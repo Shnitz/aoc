@@ -1,19 +1,21 @@
 use aoc::*;
 use days::ChristmasDay;
+use std::collections::HashMap;
 
 pub struct Day7;
 
 #[derive(Debug, Clone)]
 struct Node {
     name: String,
-    weight: Option<i32>,
+    weight: i32,
     parent: Option<String>,
     children: Vec<String>,
+    cweight: i32
 }
 
 impl ChristmasDay for Day7 {
     fn solve(&self, data: &str, prob: ProblemPart) -> String {
-        let mut tree: Vec<Node> = Vec::new();
+        let mut tree: HashMap<String, Node> = HashMap::new();
 
         data.lines().for_each(|line| {
             let nodes: Vec<String> = line.split_whitespace().map(String::from).collect::<Vec<String>>();
@@ -23,59 +25,64 @@ impl ChristmasDay for Day7 {
             let pname = nodes_iter.next().unwrap().to_string();
             let pweight = nodes_iter.next().unwrap();
             let weight = pweight.chars().skip(1).take(pweight.len() - 2).collect::<String>().parse::<i32>().unwrap();
-            let tmp_node = Node {
+            tree.entry(pname.clone()).or_insert(Node {
                 name: pname.clone(),
-                weight: Some(weight),
+                weight: weight,
                 parent: None,
                 children: Vec::new(),
-            };
-            match tree.iter().position(|node| node.name == pname) {
-                Some(idx) => tree.iter().nth(idx).unwrap(),
-                None => {
-                    tree.push(tmp_node.clone());
-                    tree.iter().last().unwrap()
-                },
-            };
+                cweight: 0
+            }).weight = weight;
+
             let mut children: Vec<String> = Vec::new();
+            let mut children_weight: i32 = 0;
             nodes_iter
                 .skip(1)
                 .for_each(|n| {
                     let name: String = n.trim_matches(',').to_string();
                     children.push(name.clone());
-                    let tmp_node = Node {
+                    let node = tree.entry(name.clone()).or_insert(Node {
                         name: name.clone(),
-                        weight: Some(weight),
+                        weight: 0,
                         parent: None,
                         children: Vec::new(),
-                    };
-                    let node: &mut Node = match tree.iter().position(|node| node.name == name) {
-                        Some(idx) => tree.iter_mut().nth(idx).unwrap(),
-                        None => {
-                            tree.push(tmp_node.clone());
-                            tree.iter_mut().last().unwrap()
-                        },
-                    };
+                        cweight: 0
+                    });
                     node.parent = Some(pname.clone());
-                    println!("{:?}", node);
+                    children_weight += node.weight;
                 });
 
-            let parent: &mut Node = tree.iter_mut().find(|n| n.name == pname).unwrap();
-            parent.children.extend(children);
+            if let Some(parent) = tree.get_mut(&pname) {
+                parent.children.extend(children);
+                parent.cweight += children_weight;
+            }
         });
 
-        let root: &String = &tree.iter().filter(|n| n.parent == None).last().unwrap().name;
+        println!("Tree: --------------------");
+        for n in &tree {
+            println!("{:?}", n);
+        }
+        let root: &String = &tree.values().filter(|n| n.parent == None).last().unwrap().name;
+
         match prob {
             ProblemPart::A => root.to_string(),
             ProblemPart::B => {
-                let candidates: Vec<&Node> = tree.iter().filter(|n| n.children.len() != 0).collect();
-                println!("Err: {:?}", candidates);
+                // let candidates: Vec<(String, i32)> = tree.iter().map(|n| (n.parent.unwrap(), n.weight)).collect();
+                //
+                // candidates.iter().for_each(|n| {
+                //     let mut parent = tree.iter().find(|p| p.name == n.0).unwrap();
+                //
+                // });
+                // println!("Err: {:?}", candidates);
+                
                 "".to_string()
             },
         }
 
     }
 }
-
+// ugml + (gyxo + ebii + jptl) = 68 + (61 + 61 + 61) = 251
+// padx + (pbga + havc + qoyq) = 45 + (66 + 66 + 66) = 243
+// fwft + (ktlj + cntj + xhth) = 72 + (57 + 57 + 57) = 243
 #[cfg(test)]
 mod test {
     use super::*;
