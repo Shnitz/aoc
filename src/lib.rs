@@ -1,6 +1,7 @@
 use std::fs::File;
 use std::io::prelude::*;
 
+#[derive(PartialEq)]
 pub enum ProblemPart { A, B }
 
 pub fn input(filenum: &String) -> String {
