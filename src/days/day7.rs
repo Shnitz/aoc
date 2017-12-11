@@ -13,6 +13,17 @@ struct Node {
     cweight: i32
 }
 impl Node {
+
+    fn new() -> Node {
+        Node {
+            name: "".to_string(),
+            weight: 0,
+            parent: None,
+            children: Vec::new(),
+            cweight: 0
+        }
+    }
+
     fn fullweight(&self) -> i32 {
         self.weight + (self.cweight * self.children.len() as i32)
     }
@@ -23,18 +34,12 @@ impl ChristmasDay for Day7 {
         let mut tree: HashMap<String, Node> = HashMap::new();
 
         data.lines().for_each(|line| {
-            let nodes: Vec<String> = line.split_whitespace().map(String::from).collect::<Vec<String>>();
+            let nodes: Vec<&str> = line.split_whitespace().collect::<Vec<&str>>();
             let mut nodes_iter = nodes.iter();
             let pname = nodes_iter.next().unwrap().to_string();
             let pweight = nodes_iter.next().unwrap();
             let weight = pweight.chars().skip(1).take(pweight.len() - 2).collect::<String>().parse::<i32>().unwrap();
-            tree.entry(pname.clone()).or_insert(Node {
-                name: pname.clone(),
-                weight: weight,
-                parent: None,
-                children: Vec::new(),
-                cweight: 0
-            }).weight = weight;
+            tree.entry(pname.clone()).or_insert(Node { name: pname.clone(), weight: weight, .. Node::new()}).weight = weight;
 
             let mut children: Vec<String> = Vec::new();
             let mut children_weight: i32 = 0;
@@ -43,13 +48,7 @@ impl ChristmasDay for Day7 {
                 .for_each(|n| {
                     let name: String = n.trim_matches(',').to_string();
                     children.push(name.clone());
-                    let node = tree.entry(name.clone()).or_insert(Node {
-                        name: name.clone(),
-                        weight: 0,
-                        parent: None,
-                        children: Vec::new(),
-                        cweight: 0
-                    });
+                    let node = tree.entry(name.clone()).or_insert(Node { name: name.clone(), .. Node::new() });
                     node.parent = Some(pname.clone());
                     children_weight += node.weight;
                 });
@@ -94,10 +93,7 @@ impl ChristmasDay for Day7 {
                 let node = tree.get(&err_node.unwrap()).unwrap();
                 let mut grouped: HashMap<i32, i32> = HashMap::new();
                 let nodes = node.children.iter().map(|n| tree.get(n).unwrap()).collect::<Vec<&Node>>();
-                nodes.iter().for_each(|child| {
-                        let e = grouped.entry(child.fullweight()).or_insert(0);
-                        *e += 1;
-                    });
+                nodes.iter().for_each(|child| *grouped.entry(child.fullweight()).or_insert(0) += 1);
                 let wrong = grouped.iter().min_by(|x, y| x.1.cmp(y.1)).unwrap().0;
                 let right = grouped.iter().max_by(|x, y| x.1.cmp(y.1)).unwrap().0;
                 let wrong_node = nodes.iter().find(|child| child.fullweight() == *wrong).unwrap();
