@@ -12,13 +12,8 @@ impl ChristmasDay for Day13 {
 
         match prob {
             ProblemPart::A => firewall.iter().map(self::firewall_cost).sum::<u32>().to_string(),
-            ProblemPart::B => {
-                let mut delay = 0;
-                while firewall.iter().any(|p| firewall_cost(&(p.0 + delay, p.1)) != 0) {
-                    delay += 1;
-                }
-                delay.to_string()
-            }
+            ProblemPart::B => (0..).filter(|delay| firewall.iter().all(|p| firewall_cost(&(p.0 + delay, p.1)) == 0))
+                                .next().unwrap().to_string()
         }
 
     }
