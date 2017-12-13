@@ -43,7 +43,7 @@ mod test {
 1: 2
 4: 4
 6: 4";
-        assert_eq!("23", Day13.solve_a(data));
+        assert_eq!("24", Day13.solve_a(data));
         assert_eq!("10", Day13.solve_b(data));
     }
 }
