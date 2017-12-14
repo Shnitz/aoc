@@ -54,7 +54,7 @@ impl ChristmasDay for Day14 {
                     }
                 }
 
-                (group_iter.next().unwrap() - 3).to_string()
+                (group_iter.next().unwrap() - 2).to_string()
             },
         }
     }
