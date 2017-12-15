@@ -17,14 +17,13 @@ impl ChristmasDay for Day14 {
         match prob {
             ProblemPart::A => drive.iter().map(|rvec| rvec.iter().map(|v| v.count_ones()).sum::<u32>()).sum::<u32>().to_string(),
             ProblemPart::B => {
-                let mut mx: Vec<Vec<String>> = drive.iter().map(move |rvec| {
+                let mut mx: Vec<Vec<String>> = drive.iter().map(|rvec| {
                     let mut tmp = vec![];
                     rvec.iter()
                         .map(|cell| format!("{:04b}", cell))
                         .for_each(|s| {
                             tmp.append(&mut s.chars().map(|c| c.to_string()).collect::<Vec<String>>());
                         });
-
                     tmp
                 }).collect::<Vec<Vec<String>>>();
 
