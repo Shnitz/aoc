@@ -31,25 +31,23 @@ impl ChristmasDay for Day15 {
     }
 
     fn solve_b(&self, data: &str) -> String {
-        let (a, b) = parse(data);
+        let (mut a, mut b) = parse(data);
         let mut judge = 0;
-        let (atx, arx): (Sender<i64>, Receiver<i64>) = mpsc::channel();
-        let (btx, brx): (Sender<i64>, Receiver<i64>) = mpsc::channel();
+        let (atx, arx) = mpsc::channel();
+        let (btx, brx) = mpsc::channel();
 
         thread::spawn(move || {
-            let mut result = a;
             for _ in 0..5_000_000 {
-                result = (result * A_FACTOR) % DIVISOR;
-                while result % 4 != 0 { result = (result * A_FACTOR) % DIVISOR; }
-                atx.send(result).unwrap();
+                a = (a * A_FACTOR) % DIVISOR;
+                while a % 4 != 0 { a = (a * A_FACTOR) % DIVISOR; }
+                atx.send(a).unwrap();
             }
         });
         thread::spawn(move || {
-            let mut result = b;
             for _ in 0..5_000_000 {
-                result = (result * B_FACTOR) % DIVISOR;
-                while result % 8 != 0 { result = (result * B_FACTOR) % DIVISOR; }
-                btx.send(result).unwrap();
+                b = (b * B_FACTOR) % DIVISOR;
+                while b % 8 != 0 { b = (b * B_FACTOR) % DIVISOR; }
+                btx.send(b).unwrap();
             }
         });
 
