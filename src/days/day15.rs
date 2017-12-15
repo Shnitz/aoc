@@ -1,5 +1,4 @@
 use days::ChristmasDay;
-use std::sync::mpsc::{Sender, Receiver};
 use std::sync::mpsc;
 use std::thread;
 pub struct Day15;
@@ -51,8 +50,8 @@ impl ChristmasDay for Day15 {
             }
         });
 
-        for _ in 0..5_000_000 {
-            if arx.recv().unwrap() & 0x0000FFFF == brx.recv().unwrap() & 0x0000FFFF {
+        for a in arx {
+            if a & 0x0000FFFF == brx.recv().unwrap() & 0x0000FFFF {
                 judge += 1;
             }
         }
