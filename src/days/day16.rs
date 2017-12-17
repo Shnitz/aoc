@@ -5,12 +5,11 @@ pub struct Day16;
 
 impl ChristmasDay for Day16 {
     fn solve(&self, data: &str, prob: ProblemPart) -> String {
-        let mut dancers = vec!['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p'];
+        let mut dancers = Vec::new();
+        for i in 0..16 { dancers.push(('a' as u8 + i) as char); }
         let cmds = parse(data);
         match prob {
-            ProblemPart::A => {
-                dance(dancers, cmds).into_iter().collect()
-            },
+            ProblemPart::A => dance(dancers, cmds).into_iter().collect(),
             ProblemPart::B => {
                 let mut ret = "".to_string();
                 let mut all: Vec<String> = Vec::new();
@@ -21,8 +20,8 @@ impl ChristmasDay for Day16 {
                     match all.iter().position(|d| d == &w) {
                         Some(p) => {
                             all.push(w);
-                            let loos = (1_000_000_000 - x) % (x - p);
-                            ret = all[p + loos - 1].clone();
+                            let loos = (1_000_000_000 - x - 1) % (x - p);
+                            ret = all[p + loos].clone();
                             break;
                         },
                         None => { all.push(w); }
