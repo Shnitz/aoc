@@ -40,68 +40,57 @@ fn run_prog(data: &str, (snd, rcv): (Sender<i64>, Receiver<i64>), pid: i64, prob
     let mut line = 0;
     let mut ret = 0;
     while line < lines.len() {
-        let mut istr = lines[line].split(" ");
-        let cmd = istr.next().unwrap();
-        match cmd {
+        let istr = lines[line].split(" ").collect::<Vec<&str>>();
+        match istr[0] {
             "snd" => {
-                let k = istr.next().unwrap();
                 if prob == ProblemPart::B && pid == 1 {
                     ret += 1;
                 }
-                let val: i64 = match registers.get(k) {
+                let val: i64 = match registers.get(istr[1]) {
                     Some(&sound) => {
                         sound
                     },
-                    None => k.parse::<i64>().unwrap(),
+                    None => istr[1].parse::<i64>().unwrap(),
                 };
                 snd.send(val).unwrap();
             },
             "set" => {
-                let x = istr.next().unwrap();
-                let y = istr.next().unwrap();
-                let val = match registers.get(y) {
+                let val = match registers.get(istr[2]) {
                     Some(&v) => v,
-                    None => y.parse::<i64>().unwrap()
+                    None => istr[2].parse::<i64>().unwrap()
                 };
-                registers.insert(x.to_string(), val);
+                registers.insert(istr[1].to_string(), val);
             },
             "add" => {
-                let x = istr.next().unwrap();
-                let y = istr.next().unwrap();
-                let val = match registers.get(y) {
+                let val = match registers.get(istr[2]) {
                     Some(&v) => v,
-                    None => y.parse::<i64>().unwrap()
+                    None => istr[2].parse::<i64>().unwrap()
                 };
-                let inc = registers.entry(x.to_string()).or_insert(0);
+                let inc = registers.entry(istr[1].to_string()).or_insert(0);
                 *inc += val;
             },
             "mul" => {
-                let x = istr.next().unwrap();
-                let y = istr.next().unwrap();
-                let val = match registers.get(y) {
+                let val = match registers.get(istr[2]) {
                     Some(&v) => v,
-                    None => y.parse::<i64>().unwrap()
+                    None => istr[2].parse::<i64>().unwrap()
                 };
-                let inc = registers.entry(x.to_string()).or_insert(0);
+                let inc = registers.entry(istr[1].to_string()).or_insert(0);
                 *inc *= val;
             },
             "mod" => {
-                let x = istr.next().unwrap();
-                let y = istr.next().unwrap();
-                let val = match registers.get(y) {
+                let val = match registers.get(istr[2]) {
                     Some(&v) => v,
-                    None => y.parse::<i64>().unwrap()
+                    None => istr[2].parse::<i64>().unwrap()
                 };
-                let inc = registers.entry(x.to_string()).or_insert(0);
+                let inc = registers.entry(istr[1].to_string()).or_insert(0);
                 *inc = *inc % val;
             },
             "rcv" => {
-                let x = istr.next().unwrap();
                 match prob {
                     ProblemPart::A => {
-                        let val = match registers.get(x) {
+                        let val = match registers.get(istr[1]) {
                             Some(&v) => v,
-                            None => x.parse::<i64>().unwrap()
+                            None => istr[1].parse::<i64>().unwrap()
                         };
                         if val != 0 {
                             while let Ok(x) = rcv.try_recv() {
@@ -112,7 +101,7 @@ fn run_prog(data: &str, (snd, rcv): (Sender<i64>, Receiver<i64>), pid: i64, prob
                     },
                     ProblemPart::B => {
                         match rcv.recv_timeout(Duration::from_millis(1000)) {
-                            Ok(val) => registers.insert(x.to_string(), val),
+                            Ok(val) => registers.insert(istr[1].to_string(), val),
                             Err(_) => {
                                 break;
                             },
@@ -121,15 +110,13 @@ fn run_prog(data: &str, (snd, rcv): (Sender<i64>, Receiver<i64>), pid: i64, prob
                 }
             },
             "jgz" => {
-                let x = istr.next().unwrap();
-                let y = istr.next().unwrap();
-                let valx = match registers.get(x) {
+                let valx = match registers.get(istr[1]) {
                     Some(&v) => v,
-                    None => x.parse::<i64>().unwrap()
+                    None => istr[1].parse::<i64>().unwrap()
                 };
-                let valy = match registers.get(y) {
+                let valy = match registers.get(istr[2]) {
                     Some(&v) => v,
-                    None => y.parse::<i64>().unwrap()
+                    None => istr[2].parse::<i64>().unwrap()
                 };
                 if valx > 0 {
                     line = ((line as i64) + valy) as usize;
