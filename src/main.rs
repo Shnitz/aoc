@@ -1,4 +1,8 @@
 extern crate aoc;
+#[macro_use]
+extern crate nom;
+extern crate roots;
+extern crate nalgebra as na;
 
 mod days;
 
