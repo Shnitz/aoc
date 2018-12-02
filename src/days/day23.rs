@@ -14,8 +14,8 @@ mod test {
     use super::*;
 
     #[test]
-    fn day23_test1() {
-        assert_eq!("", Day23.solve_a(""));
-        assert_eq!("", Day23.solve_b(""));
+    fn day24_test1() {
+        assert_eq!("", Day24.solve_a(""));
+        assert_eq!("", Day24.solve_b(""));
     }
 }

@@ -4,28 +4,8 @@ use days::ChristmasDay;
 pub struct Day2;
 
 impl ChristmasDay for Day2 {
-    fn solve(&self, data: &str, prob: ProblemPart) -> String {
-        data.lines()
-            .fold(0, |acc, l| {
-                let mut nums: Vec<_> = l.split_whitespace().map(|i| i.parse::<i32>().unwrap()).collect();
-                match prob {
-                    ProblemPart::A => acc + nums.iter().max().unwrap() - nums.iter().min().unwrap(),
-                    ProblemPart::B => {
-                        let mut tot = 0;
-                        let size = nums.len();
-                        nums.sort();
-                        for idx in 0..size {
-                            for test in (idx + 1)..size {
-                                if nums[test] % nums[idx] == 0 {
-                                    tot += nums[test] / nums[idx];
-                                }
-                            }
-                        }
-                        acc + tot
-                    }
-                }
-            })
-            .to_string()
+    fn solve(&self, _data: &str, _prob: ProblemPart) -> String {
+        "".to_string()
     }
 }
 
@@ -34,19 +14,8 @@ mod test {
     use super::*;
 
     #[test]
-    fn day2_test1() {
-        assert_eq!("18", Day2.solve_a(
-"5 1 9 5
-7 5 3
-2 4 6 8"));
+    fn day24_test1() {
+        assert_eq!("", Day24.solve_a(""));
+        assert_eq!("", Day24.solve_b(""));
     }
-
-    #[test]
-    fn day2_test2() {
-        assert_eq!("9", Day2.solve_b(
-"5 9 2 8
-    9 4 7 3
-    3 8 6 5"));
-    }
-
 }
