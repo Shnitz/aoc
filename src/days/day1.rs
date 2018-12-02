@@ -8,30 +8,25 @@ pub struct Day1;
 impl ChristmasDay for Day1 {
     fn solve(&self, data: &str, prob: ProblemPart) -> String {
         let instr = data.split("\n").map(|e| e.trim()).collect::<Vec<&str>>();
+        let fix_freq = |num: i32, op: &&str| {
+            let mut ch = op.chars();
+            let op_code = ch.next().unwrap();
+            let val = ch.collect::<String>().parse::<i32>().unwrap();
+            match op_code {
+                '+' => num + val,
+                _ => num - val
+            }
+        };
         match prob {
             ProblemPart::A =>
-                instr.iter().fold(0i32, |num, op| {
-                    let mut ch = op.chars();
-                    let op_code = ch.next().unwrap();
-                    let val = ch.collect::<String>().parse::<i32>().unwrap();
-                    match op_code {
-                        '+' => num + val,
-                        _ => num - val
-                    }
-                }).to_string(),
+                instr.iter().fold(0i32, fix_freq).to_string(),
             ProblemPart::B => {
                 let mut idx = 0usize;
                 let mut freq = 0i32;
                 let mut freqs = HashSet::new();
                 while !freqs.contains(&freq) {
                     freqs.insert(freq);
-                    let mut ch = instr[idx].chars();
-                    let op_code = ch.next().unwrap();
-                    let val = ch.collect::<String>().parse::<i32>().unwrap();
-                    freq = match op_code {
-                        '+' => freq + val,
-                        _ => freq - val
-                    };
+                    freq = fix_freq(freq, &instr[idx]);
                     idx = (idx + 1) % instr.len();
                 }
                 freq.to_string()
