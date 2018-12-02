@@ -1,6 +1,6 @@
+use aoc::*;
 use days::ChristmasDay;
-use std::sync::mpsc;
-use std::thread;
+
 pub struct Day15;
 
 impl ChristmasDay for Day15 {
@@ -15,7 +15,7 @@ mod test {
 
     #[test]
     fn day24_test1() {
-        assert_eq!("", Day24.solve_a(""));
-        assert_eq!("", Day24.solve_b(""));
+        assert_eq!("", Day15.solve_a(""));
+        assert_eq!("", Day15.solve_b(""));
     }
 }

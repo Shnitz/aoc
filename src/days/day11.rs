@@ -1,6 +1,5 @@
 use aoc::*;
 use days::ChristmasDay;
-use std::cmp;
 
 pub struct Day11;
 
@@ -16,7 +15,7 @@ mod test {
 
     #[test]
     fn day24_test1() {
-        assert_eq!("", Day24.solve_a(""));
-        assert_eq!("", Day24.solve_b(""));
+        assert_eq!("", Day11.solve_a(""));
+        assert_eq!("", Day11.solve_b(""));
     }
 }

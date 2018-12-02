@@ -4,7 +4,5 @@ version = "0.1.0"
 authors = ["Andrew Kujtan"]
 
 [dependencies]
-petgraph = "0.4.10"
 nom = "^3.2"
 roots = "0.0.2"
-nalgebra = "0.13"

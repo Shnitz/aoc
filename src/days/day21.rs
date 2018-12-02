@@ -1,6 +1,5 @@
 use aoc::*;
 use days::ChristmasDay;
-// use na::{Matrix, Matrix2, Matrix3, Matrix4, MatrixVec, DMatrix};
 
 pub struct Day21;
 
@@ -16,7 +15,7 @@ mod test {
 
     #[test]
     fn day24_test1() {
-        assert_eq!("", Day24.solve_a(""));
-        assert_eq!("", Day24.solve_b(""));
+        assert_eq!("", Day21.solve_a(""));
+        assert_eq!("", Day21.solve_b(""));
     }
 }

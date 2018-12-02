@@ -1,7 +1,5 @@
 use aoc::*;
 use days::ChristmasDay;
-use days::day10::Day10;
-use std::collections::VecDeque;
 
 pub struct Day14;
 
@@ -17,7 +15,7 @@ mod test {
 
     #[test]
     fn day24_test1() {
-        assert_eq!("", Day24.solve_a(""));
-        assert_eq!("", Day24.solve_b(""));
+        assert_eq!("", Day14.solve_a(""));
+        assert_eq!("", Day14.solve_b(""));
     }
 }

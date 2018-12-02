@@ -1,3 +1,4 @@
+use aoc::*;
 use days::ChristmasDay;
 
 pub struct Day17;
@@ -14,7 +15,7 @@ mod test {
 
     #[test]
     fn day24_test1() {
-        assert_eq!("", Day24.solve_a(""));
-        assert_eq!("", Day24.solve_b(""));
+        assert_eq!("", Day17.solve_a(""));
+        assert_eq!("", Day17.solve_b(""));
     }
 }
