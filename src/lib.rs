@@ -4,7 +4,7 @@ use std::io::prelude::*;
 #[derive(PartialEq)]
 pub enum ProblemPart { A, B }
 
-pub fn input(filenum: &String) -> String {
+pub fn input(filenum: &str) -> String {
     let mut filename = String::from("./input/input");
     filename.push_str(filenum);
     filename.push_str(".txt");

@@ -40,7 +40,7 @@ mod test {
     use super::*;
 
     #[test]
-    fn day24_test1() {
+    fn day1_test1() {
         assert_eq!("3", Day1.solve_a("+1\n-2\n+3\n+1"));
         assert_eq!("3", Day1.solve_a(&"+1, +1, +1".replace(", ", "\n")));
         assert_eq!("0", Day1.solve_a(&"+1, +1, -2".replace(", ", "\n")));
