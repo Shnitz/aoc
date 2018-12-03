@@ -7,7 +7,7 @@ pub struct Day1;
 
 impl ChristmasDay for Day1 {
     fn solve(&self, data: &str, prob: ProblemPart) -> String {
-        let instr = data.split("\n").map(|e| e.trim()).collect::<Vec<&str>>();
+        let instr = data.lines().map(|e| e.trim()).collect::<Vec<&str>>();
         let fix_freq = |num: i32, op: &&str| {
             let mut ch = op.chars();
             let op_code = ch.next().unwrap();
