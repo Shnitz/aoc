@@ -1,3 +1,5 @@
+use aoc::ProblemPart;
+
 pub mod day1;
 pub mod day2;
 pub mod day3;
@@ -23,8 +25,6 @@ pub mod day22;
 pub mod day23;
 pub mod day24;
 
-use aoc::ProblemPart;
-
 pub trait ChristmasDay {
     fn solve(&self, data: &str, prob: ProblemPart) -> String {
         match prob {
@@ -45,7 +45,7 @@ pub trait ChristmasDay {
     }
 }
 
-pub fn run(day: i8, data: String) -> (String, String){
+pub fn run(day: i8, data: String) -> (String, String) {
     let fnct: Option<Box<ChristmasDay>> = match day {
         1 => Some(Box::new(day1::Day1)),
         2 => Some(Box::new(day2::Day2)),
