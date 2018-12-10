@@ -139,8 +139,8 @@ impl Day7 {
             }
             time += 1;
         }
-        let ret = String::from_iter(output);
-        println!("CABFDE == {}", ret);
+//        let ret = String::from_iter(output);
+//        println!("CABFDE == {}", ret);
 
         (time + workers.iter().max_by_key(|e| e.0).unwrap().0 - 1).to_string()
     }
