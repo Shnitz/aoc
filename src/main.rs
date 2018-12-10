@@ -1,4 +1,5 @@
 extern crate aoc;
+extern crate petgraph;
 
 mod days;
 

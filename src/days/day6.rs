@@ -19,15 +19,15 @@ impl Day6 {
             (xy[0], xy[1])
         }).collect();
 
-        let minx = coords.iter().min_by_key(|e| e.0).unwrap();
-        let miny = coords.iter().min_by_key(|e| e.1).unwrap();
+        let minx = coords.iter().min_by_key(|e| e.0).unwrap().0;
+        let miny = coords.iter().min_by_key(|e| e.1).unwrap().1;
         // Reset base to 0.
         coords.iter_mut().for_each(|e| {
             e.0 -= minx;
             e.1 -= miny;
         });
-        let width = coords.iter().max_by_key(|e| e.0).unwrap() + 1;
-        let height = coords.iter().max_by_key(|e| e.1).unwrap() + 1;
+        let width = coords.iter().max_by_key(|e| e.0).unwrap().0 + 1;
+        let height = coords.iter().max_by_key(|e| e.1).unwrap().1 + 1;
 
         let mut counts = HashMap::new();
         coords.iter().for_each(|p| { counts.insert(p, 0); });

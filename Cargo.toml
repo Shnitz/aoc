@@ -6,3 +6,4 @@ authors = ["Andrew Kujtan"]
 [dependencies]
 nom = "^3.2"
 roots = "0.0.2"
+petgraph = "0.4.13"
