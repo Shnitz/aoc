@@ -54,6 +54,6 @@ mod test {
         assert_eq!("146373", Day9.solve_a("13 players; last marble is worth 7999 points"));
         assert_eq!("370210", Day9.solve_a("464 players; last marble is worth 70918 points"));
 
-        assert_eq!("3101176548", Day9.solve_b("464 players; last marble is worth 70918 points"));
+        assert_eq!("22563", Day9.solve_b("9 players; last marble is worth 25 points"));
     }
 }
