@@ -40,7 +40,9 @@ pub trait ChristmasDay {
     }
     fn solve_all(&self, data: String) -> (String, String) {
         let a = self.solve_a(&data.clone());
+        println!("Part A: {}", a);
         let b = self.solve_b(&data);
+        println!("Part B: {}", b);
         (a, b)
     }
 }

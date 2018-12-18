@@ -78,8 +78,6 @@ impl ChristmasDay for Day12 {
                 score += iter_left * diff;
                 break;
             }
-
-            if n % 1_000 == 0 { println!("{}", n); }
         }
         if prob == ProblemPart::A {
             let mut offset = 0i64 - zero_idx as i64 - 1;
