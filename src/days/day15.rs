@@ -80,9 +80,7 @@ impl Day15 {
                 let cur_type = units[unit_idx].t;
 
                 if units.iter().all(|u| u.t == 'G') || units.iter().all(|u| u.t == 'E') {
-                    self.print_maze(&maze, &units);
                     let health = units.iter().map(|e| e.h).sum::<i32>();
-                    println!("a {} {}", health, round);
                     return (health * round, num_elves == units.iter().filter(|u| u.t == 'E').count());
                 }
 
@@ -162,10 +160,8 @@ impl Day15 {
                 break;
             }
         }
-        self.print_maze(&maze, &units);
 
         let health = units.iter().map(|e| e.h).sum::<i32>();
-        println!("b {} {}", health, round);
         (health * round, num_elves == units.iter().filter(|u| u.t == 'E').count())
     }
 
