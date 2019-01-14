@@ -1,4 +1,3 @@
-use aoc::*;
 use days::ChristmasDay;
 
 pub struct Day15;
@@ -213,7 +212,7 @@ impl Day15 {
         reachable
     }
 
-    fn print_maze(&self, maze: &Vec<Vec<usize>>, units: &Vec<Unit>) {
+    fn _print_maze(&self, maze: &Vec<Vec<usize>>, units: &Vec<Unit>) {
         let mut img = maze.iter().map(|r| {
             r.iter().map(|c| if *c == 0 { ".".to_string() } else { "#".to_string() }).collect::<Vec<String>>()
         }).collect::<Vec<Vec<String>>>();
